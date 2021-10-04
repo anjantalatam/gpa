@@ -13,14 +13,14 @@ function App() {
     <>
       <CssBaseline />
       <NavBar />
-      <div className='body'>
+      <div className="body">
         <Switch>
-          <Route path='/cgpa' component={Cgpa}></Route>
-          <Route path='/sgpa' component={Sgpa}></Route>
+          <Route path="/cgpa" component={Cgpa}></Route>
+          <Route path="/sgpa" component={Sgpa}></Route>
           {/* <Route path='/who-are-we' component={Sgpa}></Route> */}
-          <Route path='/support' component={Support}></Route>
-          <Route path='/demo' component={Demo} />
-          <Route path='/' component={Home} />
+          <Route path="/support" component={Support}></Route>
+          <Route path="/demo" component={Demo} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </>
