@@ -20,7 +20,7 @@ function App() {
           {/* <Route path='/who-are-we' component={Sgpa}></Route> */}
           <Route path="/support" component={Support}></Route>
           <Route path="/demo" component={Demo} />
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </div>
     </>
