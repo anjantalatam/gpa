@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Box, Button, Container } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
@@ -44,13 +44,12 @@ function Cgpa() {
 
   return (
     <div>
-      {/* <form noValidate autoComplete='off' preventDefault> */}
-      <Box p={3} display='flex' flexWrap='wrap' justifyContent='center'>
+      <Box p={3} display="flex" flexWrap="wrap" justifyContent="center">
         <Box m={1}>
           <TextField
-            label='Number of Semesters'
+            label="Number of Semesters"
             autoFocus
-            type='number'
+            type="number"
             InputLabelProps={{
               shrink: true,
             }}
@@ -58,21 +57,20 @@ function Cgpa() {
             onChange={(e) => setSemCount(e.target.value)}
           />
         </Box>
-        <Box display='flex' alignItems='flex-end' m={1}>
+        <Box display="flex" alignItems="flex-end" m={1}>
           <Button
-            color='primary'
-            size='large'
-            variant='outlined'
+            color="primary"
+            size="large"
+            variant="outlined"
             onClick={() => setSemCount()}
           >
             Generate Table
           </Button>
         </Box>
       </Box>
-      {/* </form> */}
-      <Container maxWidth='md' className={classes.container}>
+      <Container maxWidth="md" className={classes.container}>
         <TableContainer component={Paper} className={classes.tableContainer}>
-          <Table className={classes.table} aria-label='simple table'>
+          <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell className={classes.tableHeaderCell}>
@@ -87,14 +85,14 @@ function Cgpa() {
             <TableBody>
               {rows.map((row, index) => (
                 <TableRow key={row.name}>
-                  <TableCell component='th' scope='row'>
+                  <TableCell component="th" scope="row">
                     {index}
                   </TableCell>
                   <TableCell>
-                    <TextField variant='outlined' size='small' type='number' />
+                    <TextField variant="outlined" size="small" type="number" />
                   </TableCell>
                   <TableCell>
-                    <TextField variant='outlined' size='small' type='number' />
+                    <TextField variant="outlined" size="small" type="number" />
                   </TableCell>
                 </TableRow>
               ))}
