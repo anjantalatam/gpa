@@ -2,4 +2,4 @@
 
 Note: Work In Progress.
 
-https://anjantalatam.github.io/gpa/cgpa
+https://anjantalatam.github.io/gpa/#/cgpa
