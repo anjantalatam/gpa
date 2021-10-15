@@ -10,6 +10,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import lodash from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,20 +28,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
 function Cgpa() {
   const classes = useStyles();
   const [semCount, setSemCount] = useState("");
+  const [semesters, setSemesters] = useState([
+    { semesterNumber: 1, numberOfCredits: "", sgpa: "" },
+  ]);
+
+  const generateSemesters = () => {
+    const newSemesters = [];
+    for (let i = 1; i <= semCount; i++) {
+      newSemesters.push({ semesterNumber: i, numberOfCredits: "", sgpa: "" });
+    }
+    setSemesters(newSemesters);
+  };
+
+  const handleDataChange = ({ target: { name, id, value } }) => {
+    const currentSemester = id.split("-").pop();
+    const clonedSemesters = lodash.cloneDeep(semesters);
+    clonedSemesters[currentSemester - 1][name] = value;
+
+    setSemesters(clonedSemesters);
+  };
 
   return (
     <div>
@@ -55,6 +64,7 @@ function Cgpa() {
             }}
             value={semCount}
             onChange={(e) => setSemCount(e.target.value)}
+            InputProps={{ inputProps: { min: 1 } }}
           />
         </Box>
         <Box display="flex" alignItems="flex-end" m={1}>
@@ -62,7 +72,7 @@ function Cgpa() {
             color="primary"
             size="large"
             variant="outlined"
-            onClick={() => setSemCount()}
+            onClick={generateSemesters}
           >
             Generate Table
           </Button>
@@ -83,16 +93,34 @@ function Cgpa() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
-                <TableRow key={row.name}>
+              {semesters.map((semester) => (
+                <TableRow key={semester.semesterNumber}>
                   <TableCell component="th" scope="row">
-                    {index}
+                    {semester.semesterNumber}
                   </TableCell>
                   <TableCell>
-                    <TextField variant="outlined" size="small" type="number" />
+                    <TextField
+                      variant="outlined"
+                      size="small"
+                      type="number"
+                      autoComplete="off"
+                      name="numberOfCredits"
+                      id={`numberOfCredits-${semester.semesterNumber}`}
+                      value={semester.numberOfCredits}
+                      onChange={handleDataChange}
+                    />
                   </TableCell>
                   <TableCell>
-                    <TextField variant="outlined" size="small" type="number" />
+                    <TextField
+                      variant="outlined"
+                      size="small"
+                      type="number"
+                      autoComplete="off"
+                      name="sgpa"
+                      id={`sgpa-${semester.semesterNumber}`}
+                      value={semester.sgpa}
+                      onChange={handleDataChange}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
