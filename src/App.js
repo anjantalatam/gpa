@@ -6,7 +6,6 @@ import Cgpa from "./components/Cgpa";
 import Sgpa from "./components/Sgpa";
 import Support from "./components/Support";
 import { CssBaseline } from "@material-ui/core";
-import Demo from "./components/Demo";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
           <Route path="/sgpa" component={Sgpa}></Route>
           {/* <Route path='/who-are-we' component={Sgpa}></Route> */}
           <Route path="/support" component={Support}></Route>
-          <Route path="/demo" component={Demo} />
           <Route exact path="/" component={Home} />
         </Switch>
       </div>
